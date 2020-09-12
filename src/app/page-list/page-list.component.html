@@ -1,0 +1,33 @@
+<!-- th = table header -->
+<!-- td = table data -->
+<table class="table is-striped">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Word Count</th>
+      <th>Snippet</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let page of pagesList">
+      <td>
+        <!-- [href] allows us dynamically place the value like template strings.if i wrote href, i would not be able to reference any variable -->
+        <a
+          target="_blank"
+          [href]="'https://en.wikipedia.org?curid=' + page.pageid"
+        >
+          {{ page.title }}
+        </a>
+      </td>
+      <td>{{ page.wordcount }}</td>
+      <!-- take a look at td element, its innerHTML property to be equal to  -->
+      <!-- "angular escaper" escapes the html code. it does not execute it -->
+      <td [innerHTML]="page.snippet">{{ page.snippet }}</td>
+      <!-- document.body.innerHTML will convert the html code to the plain text. when we get results from wikipedia, "snippet" property has some inner html, so we convert it to html -->
+      <!-- angular has second step against xss. it will look at the content and automatically purify it which means it will check the code first if there is a risk of xss attact. -->
+
+      <!-- <td>{{ page.snippet }}</td> -->
+      <td></td>
+    </tr>
+  </tbody>
+</table>

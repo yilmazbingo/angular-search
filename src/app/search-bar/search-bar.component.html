@@ -1,0 +1,20 @@
+<!------------- this is the one approach--------- -->
+<!-- <input (input)="onInput($event.target.value)" /> -->
+
+<!-- submitting input values when u press "enter", is browser's default action -->
+<div class="box">
+  <form (submit)="onFormSubmit($event)">
+    <!-- this is the less code. we do not need to write onInput() -->
+    <!-- everytime input event occurs, we take $event.target.value and assign it to the "term" -->
+    <!-- (input) this is event handling syntax.  -->
+    <!-- in ANgular, we can reference the property of mehods of the class inside here. this is parent-to-child communication. "term" is already defined in the class file and here we are assigning a new value to it. no need to write this.term -->
+    <input 
+    placeholder="Enter Search Term"
+    class="input"
+    (input)="term = $event.target.value" />
+      <!--  "input" event is a native JavaScript DOM (Document Object Model) event -->
+  
+    <!-- The "input" event, unlike the "change" event, is a synchronous event that is triggered as the user is interacting with the text-based input controls. Meaning, it doesn't wait for a blur event to calculate the value-change - the input event is triggered immediately after any mutation of the value property -->
+  </form>
+</div>
+

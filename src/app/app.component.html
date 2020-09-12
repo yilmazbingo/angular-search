@@ -1,0 +1,10 @@
+<!-- app-search-bar and app-page-list are child components of the app component -->
+<!-- ***   this is where communication takes place *** -->
+
+<div class="container">
+  <!-- parent component watches for the "submitted" event and whenever that occurs, i run the event handler -->
+  <!-- when submitted event occurs, means it gets the  search "term" -->
+  <app-search-bar (submitted)="onTerm($event)"></app-search-bar>
+  <!-- property binding syntax -->
+  <app-page-list *ngIf="pages.length" [pagesList]="pages"></app-page-list>
+</div>

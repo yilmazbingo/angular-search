@@ -1,0 +1,6 @@
+/* this will style only the class names in defined in this component's template file . since "searchmatch* is in the result of the search we cannot target it here. we have to add this to our global file style.*/
+
+
+/* .searchmatch{
+    font-weight: bold;
+} */
