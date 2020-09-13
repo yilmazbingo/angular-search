@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { WikipediaService } from './wikipedia.service';
 
+// this is a decorator factory. it must return a func
+// decorators are used to make the code neat
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -22,10 +24,12 @@ export class AppComponent {
   // everything in this file processed by the typescript compiler before it even gets executed inside the browser. it is also running some tooling like webpack part of the angular. that tooling automatically parses the constructor.
   // webpack is compiling this constructor to a normal js constructor. browser does not understand ts. in the compiler code there is "AppComponent.ctorParameters=()=>{type:__wikipedia_service__WEBPACK__IMPORTED_MODULE_2__["WikipediaService"]}" like ast token, defines the constructor parameters.
   onTerm(term: string) {
-    // we use callback not promise
-    // we should avoid annotation any
-    this.wikipedia.search(term).subscribe((res: any) => {
-      this.pages = res.query.search;
+    // .search() returns observable. we call subscribe() on it and pass the data to the observer
+    // callback() is called anytime an observable emit a value
+    // ts knows that we are getting array of objects from the WikipediaResponse interface
+    this.wikipedia.search(term).subscribe((pages) => {
+      this.pages = pages;
     });
   }
 }
+// DONT USE "ANY" ANNOTATION
